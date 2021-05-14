@@ -1,0 +1,323 @@
+@import "./components/basic";
+
+/* Global Style*/
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: $font-basic;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: $blackColor;
+}
+
+p {
+  padding: 0;
+  margin: 0;
+  line-height: 1.2;
+}
+
+a {
+  text-decoration: none;
+  color: $blackColor;
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  color: $blackColor;
+}
+
+img {
+  width: 100%;
+}
+
+*:focus {
+  outline: none;
+}
+.form-control:focus {
+  border-color: inherit;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+/* Utilities */
+.container {
+  max-width: 1100px;
+  margin: auto;
+  overflow: hidden;
+  padding: auto 2rem;
+}
+
+.majorPage {
+  margin-top: $navBarHeight;
+  padding-top: $toNavBar;
+}
+
+.textBold {
+  font-weight: 700;
+}
+/* homepage*/
+.homepage {
+  background-color: $backColor;
+  min-height: 100vh;
+}
+/* layout*/
+/* Navebar*/
+.navbarWrap {
+  width: 100%;
+  background-color: $whiteColor;
+  position: fixed;
+  padding-top: 0.7rem;
+  top: 0;
+  height: $navBarHeight;
+  border-bottom: 1.5px solid $lightgreyColor;
+  z-index: $Z-Index-NavBar;
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  .navbar-logo {
+    max-width: 260px;
+  }
+  ul {
+    display: flex;
+    margin: 0;
+    li {
+      margin: auto 0 auto 2rem;
+      i {
+        color: $greyColor;
+      }
+    }
+  }
+}
+.navbarWrapSec {
+  position: relative;
+}
+.navbarSec {
+  position: fixed;
+  top: $navBarHeight;
+  width: 100%;
+  z-index: $Z-Index-NavBarSec;
+  background-color: $backColor;
+  ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: $toNavBar;
+    max-width: 1100px;
+    margin: auto;
+
+    li {
+      margin-right: 2rem;
+      height: 100%;
+      text-transform: uppercase;
+      border-top: 2px solid;
+    }
+  }
+}
+
+/* Landing*/
+.backgroundImg {
+  position: fixed;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  background-position: 50% 50%;
+  background-size: cover;
+}
+.landingContent {
+  position: relative;
+}
+.LandingRightFrame {
+  background-color: $whiteColor;
+  padding: 1rem 1.5rem;
+  font-size: 80%;
+}
+
+/* Modal*/
+.otr-modal {
+  position: fixed;
+  z-index: $Z-Index-Modal;
+  width: 80%;
+  min-width: 256px;
+  left: 10%;
+  top: 10%;
+  background-color: white;
+  transition: all 0.3s ease-out;
+  padding: 1rem;
+  overflow: auto;
+  max-height: 80%;
+  box-shadow: 1px 1px 1px rgb(105, 104, 104);
+}
+/* Backdrop*/
+.Backdrop {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: $Z-Index-Backdrop;
+  left: 0;
+  top: 0;
+}
+
+/* auth*/
+/* Register*/
+.Register {
+  background: $lightgreyColor;
+  height: 100vh;
+  width: 100%;
+  .RegisterFrame {
+    background: $whiteColor;
+    padding: 2rem 1rem;
+  }
+}
+
+/* RegisterContent*/
+.RegisterContent {
+  margin: 0;
+  padding: 0;
+}
+
+/* posts*/
+/* PostItem*/
+.postItem {
+  background-color: $whiteColor;
+  margin-bottom: 2rem;
+  padding: 1rem 1.5rem;
+}
+.addPost {
+  border-radius: 1rem;
+}
+.postItem-name {
+  font-weight: bold;
+  margin-right: 1rem;
+  line-height: 120%; // ?
+}
+.postItem-time {
+  color: $lightgreyColor;
+  font-size: 90%;
+}
+//part 1
+.postItem-profile {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 1rem;
+  img {
+    width: 60px;
+    border-radius: 50%;
+    margin-right: 1rem;
+  }
+  .postItem-profileInfo {
+    display: flex;
+    align-items: center;
+  }
+}
+//part 2
+.postItem-post {
+  padding-top: 1rem;
+  border-top: 1px solid $lightgreyColor;
+  padding-bottom: 1rem;
+}
+.postItem-post-above {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  .deleteBtn {
+    display: flex;
+    align-items: center;
+  }
+}
+.postItem-post-below {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 0.5rem;
+}
+//part 3
+.postItem-comments {
+  padding-top: 0.5rem;
+  border-top: 1px solid $lightgreyColor;
+  padding-bottom: 1rem;
+  .postItem-comment {
+    margin-top: 0.5rem;
+  }
+  .postItem-comment-info {
+    display: flex;
+    justify-content: flex-start;
+  }
+}
+//part 4
+.postItem-commentForm {
+  input {
+    border: 1px solid rgb(231, 231, 231);
+  }
+  .btn-light {
+    background-color: rgb(231, 231, 231);
+    border: 1px solid rgb(231, 231, 231);
+  }
+}
+
+/* Profiles*/
+.profiles {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 2em;
+  row-gap: 1em;
+}
+.profilesNL {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Profile*/
+.profileSection {
+  border-bottom: 2px solid black;
+  display: flex;
+  justify-content: space-between;
+}
+
+.profileName {
+  font-weight: bold;
+}
+
+.profileTitle {
+  letter-spacing: -0.5px;
+}
+
+.profileLocation {
+  color: $lightgreyColor;
+}
+
+.profileWeb {
+  letter-spacing: -0.5px;
+}
+
+.profileDiscription {
+  line-height: 120%;
+}
+
+.ProfileModuleItem {
+  display: flex;
+}
+
+.ProfileMItemDate {
+  flex: 1;
+  color: $greyColor;
+}
+
+.ProfileMItemContent {
+  flex: 3;
+  :first-child {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+}
