@@ -1,0 +1,4 @@
+{
+    "mongoURI":"mongodb+srv://JackieXu:JackieXu@archicom.teofb.mongodb.net/<archiCommunity>?retryWrites=true&w=majority",
+    "jwtSecret":"mysecretetoken"
+}
