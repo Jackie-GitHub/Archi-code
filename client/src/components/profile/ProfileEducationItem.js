@@ -1,12 +1,13 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import Moment from 'react-moment';
 import {deleteEducation} from '../../actions/profile';
 import PropTypes from 'prop-types';
 
 const ProfileEducationItem = ({deleteEducation,edu,auth,profile})=> {
     return (
         <div className="ProfileModuleItem mt-2">
-            <div className="ProfileMItemDate">Aug 2018 - Dec 2018</div>
+            <div className="ProfileMItemDate"><Moment format='MMM YYYY'>{edu.from}</Moment> - {edu.current ? 'Present' : <Moment format='MMM YYYY'>{edu.to}</Moment>}</div>
             <div className="ProfileMItemContent">
                 <div>
                     <div className="ProfileMItemTitle textBold">

@@ -4,6 +4,7 @@ import EditProfile from './EditProfile';
 import {deleteAccount} from '../../actions/profile';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
+import ProfileBasicInfoContent from './ProfileBasicInfoContent';
 
 const ProfileBasicInfo = ({name,email,title,company,location,companyWeb,personalWeb,social,deleteAccount,auth,profile})=> {
     const [modal, showModal] = useState({
@@ -16,32 +17,11 @@ const ProfileBasicInfo = ({name,email,title,company,location,companyWeb,personal
         <Fragment>
             <Modal onclick={()=>hideModal()} show={modal.show}>
                 <div>
-                    <EditProfile company={company} title={title} location={location} companyWeb={companyWeb} personalWeb={personalWeb} social={social} btnClick={()=>hideModal()} />
+                    <EditProfile company={company} title={title} loc={location} companyWeb={companyWeb} personalWeb={personalWeb} social={social} btnClick={()=>hideModal()} />
                 </div>
             </Modal>
             <div>
-                <div className="profileName">{name}</div>
-                <div className="profileTitle">{title !== null ? title : null} {company !== null ? `at ${company}`: null}</div>
-                <div className="profileLocation mb-3">{location}</div>
-                <div className="profileWeb">{companyWeb !== null ? `Company Web: ${companyWeb} ` : null}</div>
-                <div className="profileWeb">{personalWeb !== null ? `Personal Web: ${personalWeb} ` : null}</div>
-
-                {
-                    social
-                    ? Object.entries(social)
-                        .filter(([_, value]) => value)
-                        .map(([key, value]) => (
-                          <a
-                            key={key}
-                            href={value}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <i className={`fab fa-${key} me-2`}></i>
-                          </a>
-                        ))
-                    : null
-                }
+                <ProfileBasicInfoContent name={name} company={company} title={title} loc={location} companyWeb = {companyWeb} personalWeb={personalWeb} social={social} />
                 {auth.isAuthenticated && auth.loading === false && auth.user._id === profile.user._id &&
                     <Fragment>
                     <div>

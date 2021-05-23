@@ -6,12 +6,19 @@ import PropTypes from 'prop-types';
 import {likePost,unlikePost,deletePost,addComment,deleteComment} from '../../actions/post';
 
 const PostItem = ({likePost,unlikePost,deletePost,auth,post:{_id,text,name,avatar,user,likes,unlikes,comments,date},addComment,deleteComment}) => {
+    let userLoaded = auth.isAuthenticated && !auth.loading && auth.user !== null;
+    let userId = null;
+    if (userLoaded) {
+        userId = auth.user._id;
+    }
+
     let userLiked = false;
     let userUnliked = false;
-    if (auth.isAuthenticated && auth.loading === false && auth.user ){
-        userLiked = likes.map(like=>like.user).includes(auth.user._id);
-        userUnliked = unlikes.map(unlike=>unlike.user).includes(auth.user._id);
+    if (userId) {
+        userLiked = likes.map(like=>like.user).includes(userId);
+        userUnliked = unlikes.map(unlike=>unlike.user).includes(userId);
     }
+   
     const [commentContent, setComment] = useState({text:''})
     const onChange = e => setComment({text:e.target.value});
     const onSubmit = e => {
@@ -36,7 +43,7 @@ const PostItem = ({likePost,unlikePost,deletePost,auth,post:{_id,text,name,avata
             <div className="postItem-post">
                 <div className="postItem-post-above">
                     <p>{text}</p>
-                    {auth.isAuthenticated && auth.loading === false && auth.user._id === user &&
+                    {userId && userId === user &&
                     <button type="button" className="btn btn-danger btn-sm py-0 deleteBtn" onClick={()=>deletePost(_id)}><i className="fas fa-times" />Delete</button>}
                 </div>
                 
@@ -60,13 +67,13 @@ const PostItem = ({likePost,unlikePost,deletePost,auth,post:{_id,text,name,avata
                                 </div>
                                 <div className="postItem-time"><Moment format='YYYY/MM/DD hh:mm:ss'>{comment.date}</Moment></div>
                             </div>
-                            {auth.isAuthenticated && auth.loading === false && auth.user._id === comment.user &&
+                            {userId && userId === comment.user &&
                             <button type="button" className="btn btn-danger btn-sm py-0 deleteBtn" onClick={()=>deleteComment(_id,comment._id)}><i className="fas fa-times" /> Delete</button>}
                         </div>)
                     }</div>
             }            
             
-            {auth.isAuthenticated ? <form className="input-group mb-3 postItem-commentForm" onSubmit={e=>onSubmit(e)}>
+            {userId ? <form className="input-group mb-3 postItem-commentForm" onSubmit={e=>onSubmit(e)}>
                 <input type="text" className="form-control" placeholder="Add a comment..." onChange={e=>onChange(e)} value={commentContent.text}/>
                 <button className="btn btn-light btn-sm py-0" type="submit">SEND</button>
             </form> : null}

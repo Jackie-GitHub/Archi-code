@@ -3,23 +3,20 @@ import {REGISTER_SUCCESS,REGISTER_FAIL, USER_LOADED,AUTH_ERROR,LOGIN_SUCCESS,LOG
 import {setAlert} from './alert';
 import setAuthToken from '../utils/setAuthToken';
 
-//Load User
+//Load User  :get auth.user
 export const loadUser = () => async dispatch => {
     if (localStorage.token){
         setAuthToken(localStorage.token)
     }
     try {
         const res = await axios.get('/api/auth');
-        console.log('loadUser');
-        console.log(res.data)
         dispatch({type:USER_LOADED,payload:res.data});
     } catch (err) {
-        console.log('loaduserErr')
         dispatch({type:AUTH_ERROR})
     }
 };
 
-//Register User
+//Register User  :get token
 export const register = ({name,email,password}) => async dispatch => {
     const config={
         headers:{
@@ -30,7 +27,6 @@ export const register = ({name,email,password}) => async dispatch => {
     try {
         const res = await axios.post('/api/users',body,config);
         dispatch({type:REGISTER_SUCCESS,payload:res.data});
-        console.log('after RegisterSuccess');
         dispatch(loadUser());
     } catch (err) {
         const errors=err.response.data.errors;
@@ -41,7 +37,7 @@ export const register = ({name,email,password}) => async dispatch => {
     }
 }
 
-//Login User
+//Login User  :get token
 export const login = (email,password) => async dispatch => {
     const config = {
         headers:{

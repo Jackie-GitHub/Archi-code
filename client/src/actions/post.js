@@ -1,5 +1,5 @@
 import {GET_POSTS,GET_POSTSBYUSER,POST_ERROR,UPDATE_LIKES,DELETE_POST,ADD_POST,ADD_COMMENT,REMOVE_COMMENT} from './types';
-import {setAlert} from './alert';
+//import {setAlert} from './alert';
 import axios from 'axios';
 
 //Get all posts

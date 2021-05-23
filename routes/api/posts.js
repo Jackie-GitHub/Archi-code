@@ -3,9 +3,8 @@ const {check,validationResult } = require('express-validator');
 const router = express.Router();
 const auth = require('../../middleware/auth');
 const Post = require('../../models/Post');
-const Profile = require('../../models/Profile');
 const User = require('../../models/User');
-const { route } = require('./profile');
+const fs = require('fs');
 
 //Post api/posts
 //Create a post
@@ -22,6 +21,7 @@ router.post('/',[auth,
         const user = await User.findById(req.user.id).select('-password');
         const newPost = new Post({
             text:req.body.text,
+            // image:{data:fs.readFileSync(imgPath),type:'image/jpg'},
             name:user.name,
             avatar:user.avatar,
             user:req.user.id

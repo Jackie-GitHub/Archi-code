@@ -1,19 +1,24 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import NavebarSec from '../layout/NavbarSec';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch,Redirect} from 'react-router-dom';
 import Profile from '../profile/Profile';
 import PostByUserContainer from '../posts/PostByUserContainer';
+import Spinner from '../layout/Spinner';
 
 const HomePage = ({auth}) => {
+    const userLoaded = auth.isAuthenticated && !auth.loading && auth.user !== null;
     return (
         <Router>
             <div className = "homepage">
-                <NavebarSec profileLink='/profile/profile' postLink='/profile/posts'/>
+                <NavebarSec profileLink='/me/profile' postLink='/me/posts'/>
                 <Switch >
-                    <Route path="/profile/profile" component={Profile} />
-                    <Route path="/profile/posts" >
-                        <PostByUserContainer userId={auth.user._id}/>
+                    <Redirect from="/profile" to="/me/profile" />
+                    <Route path="/me/profile">
+                        <Profile userLoaded = {userLoaded} />
+                    </Route>
+                    <Route path="/me/posts" >
+                        {userLoaded ? <PostByUserContainer userId={auth.user._id}/> : <Spinner/>}
                     </Route>
                 </Switch>
             </div>

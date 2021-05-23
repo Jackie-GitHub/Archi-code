@@ -30,7 +30,7 @@ const ProfileAbout = ({about,updateAbout,auth,profile}) => {
                     <input type="submit" className="btn btn-outline-success btn-sm mt-3" value="Update About" />
                 </form>
             </Modal>
-            <div className="profileItem mb-3">
+            <div className="profileItem mb-3 profileAbout">
                 <div className=" profileSection pb-2">
                     <div className="textBold">
                         ABOUT

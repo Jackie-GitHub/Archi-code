@@ -1,4 +1,4 @@
-import {GET_PROFILE,PROFILE_ERROR,UPDATE_PROFILE,PROFILE_ERROR2,CLEAR_PROFILE,GET_PROFILES} from '../actions/types';
+import {GET_PROFILE,PROFILE_ERROR,UPDATE_PROFILE,PROFILE_ERROR2,CLEAR_PROFILE,GET_PROFILES,UPDATE_EDUCATION,UPDATE_EXPERIENCE} from '../actions/types';
 const initialState = {
     profile:null,
     profiles:[],
@@ -11,7 +11,11 @@ const profile = (state = initialState,action) => {
     switch (type) {
         case GET_PROFILE:
         case UPDATE_PROFILE:
-            return({...state,profile:payload,loading:false})
+            return({...state,profile:payload,loading:false});
+        case UPDATE_EXPERIENCE:
+            return({...state,profile:{...state.profile,experience:payload}});
+        case UPDATE_EDUCATION:
+            return({...state,profile:{...state.profile,education:payload}})
         case GET_PROFILES:
             return({...state,profiles:payload,loading:false})  
         case PROFILE_ERROR:

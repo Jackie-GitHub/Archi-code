@@ -1,4 +1,4 @@
-import {GET_PROFILE,PROFILE_ERROR,PROFILE_ERROR2,UPDATE_PROFILE,CLEAR_PROFILE,ACCOUNT_DELETED,GET_PROFILES} from './types';
+import {GET_PROFILE,PROFILE_ERROR,PROFILE_ERROR2,UPDATE_PROFILE,CLEAR_PROFILE,ACCOUNT_DELETED,GET_PROFILES,UPDATE_EXPERIENCE,UPDATE_EDUCATION} from './types';
 import {setAlert} from './alert';
 import axios from 'axios';
 
@@ -120,9 +120,10 @@ export const addExperience = (formData, history) => async dispatch => {
                 'Content-Type':'application/json'
             }
         }
+        //get experience
         const res = await axios.put('/api/profile/experience',formData,config)
         dispatch({
-            type:UPDATE_PROFILE,
+            type:UPDATE_EXPERIENCE,
             payload:res.data
         })
     }catch(err){
@@ -141,7 +142,7 @@ export const addExperience = (formData, history) => async dispatch => {
 export const deleteExperience = (exp_id) => async dispatch => {
     try {
         const res = await axios.delete(`/api/profile/experience/${exp_id}`);
-        dispatch({type:UPDATE_PROFILE,payload:res.data});
+        dispatch({type:UPDATE_EXPERIENCE,payload:res.data});
     } catch (err) {
         dispatch({
             type:PROFILE_ERROR2,
@@ -161,7 +162,7 @@ export const addEducation = (formData, history) => async dispatch => {
         }
         const res = await axios.put('/api/profile/education',formData,config)
         dispatch({
-            type:UPDATE_PROFILE,
+            type:UPDATE_EDUCATION,
             payload:res.data
         })
     }catch(err){
@@ -180,7 +181,7 @@ export const addEducation = (formData, history) => async dispatch => {
 export const deleteEducation = (edu_id) => async dispatch => {
     try {
         const res = await axios.delete(`/api/profile/education/${edu_id}`);
-        dispatch({type:UPDATE_PROFILE,payload:res.data});
+        dispatch({type:UPDATE_EDUCATION,payload:res.data});
     } catch (err) {
         dispatch({
             type:PROFILE_ERROR2,

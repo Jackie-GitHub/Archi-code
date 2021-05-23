@@ -8,7 +8,7 @@ import {connect} from 'react-redux';
 const PostByUser = ({post:{posts,loading},getPostsByUser,userId})=> {
     useEffect(()=>{
         getPostsByUser(userId);
-    },[getPostsByUser]);
+    },[getPostsByUser,userId]);
     return (
         loading ? <Spinner /> : <div>
             {posts.length === 0 ? <div>No post from this member.</div> :posts.map((postItem,index) => <PostItem key={index} post={postItem}/>)}

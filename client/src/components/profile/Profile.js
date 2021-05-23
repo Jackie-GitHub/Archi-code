@@ -6,16 +6,14 @@ import Spinner from '../layout/Spinner';
 
 import UpdateProfile from './UpdateProfile';
 import CreateProfile from './CreateProfile';
-import Alert from '../layout/Alert';
 
-const Profile =({getCurrentProfile,profile:{profile,loading}}) => {
+const Profile =({getCurrentProfile,profile:{profile,loading},userLoaded}) => {
     useEffect(()=>{
         getCurrentProfile();
-    },[getCurrentProfile]);
+    },[getCurrentProfile,userLoaded]);
     return (
         <div className="container majorPage">
-            <Alert />
-            { loading && profile === null ? <Spinner /> : <Fragment>
+            { loading ? <Spinner /> : <Fragment>
                 {profile !== null ? <UpdateProfile profile={profile} /> : <CreateProfile />}
             </Fragment>}
         </div>
